@@ -13,4 +13,4 @@ categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
 clap = "3.0.0-beta.2"
-craftping = "0.2.1"
+craftping = { version = "0.2.1", features = ["async-tokio"] }
