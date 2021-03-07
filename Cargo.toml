@@ -12,7 +12,7 @@ keywords = ["minecraft", "ping"]
 categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
-clap = "3.0.0-beta.2"
 craftping = { version = "0.2.1", features = ["async-tokio"] }
-peg = "0.6.3"
 tokio = { version = "1.2.0", features = ["rt", "time", "macros"] }
+clap = "3.0.0-beta.2"
+peg = "0.6.3"
