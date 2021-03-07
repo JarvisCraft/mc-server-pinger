@@ -16,8 +16,8 @@ use std::process::exit;
 use std::str::FromStr;
 
 use clap::Clap;
-use craftping::{Error, Response};
 use craftping::tokio::ping;
+use craftping::{Error, Response};
 use tokio::time::error::Elapsed;
 use tokio::time::timeout;
 
@@ -53,7 +53,7 @@ async fn main() {
         *options.timeout,
         ping(options.hostname.as_str(), options.port),
     )
-        .await
+    .await
     {
         Ok(Ok(response)) => options.flavor.handle_response(response),
         Ok(Err(error)) => options.flavor.handle_error(error),
