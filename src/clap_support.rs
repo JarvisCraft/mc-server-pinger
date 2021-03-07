@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//! Wrapper around [`Duration`] ro support its [parsing](std::str::FromStr).
+//! Type wrappers enabling [`clap`] support.
 
 use std::fmt::Debug;
 use std::ops::Deref;
@@ -72,7 +72,7 @@ impl FromStr for TimeoutDuration {
 
     fn from_str(raw: &str) -> Result<Self, Self::Err> {
         duration_parser::duration(raw)
-            .map(|parsed| Self(parsed))
+            .map(Self)
             .map_err(|error| error.expected.to_string())
     }
 }

@@ -12,19 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::process::exit;
-use std::str::FromStr;
-
 use clap::Clap;
-use craftping::{Error, Response};
 use craftping::tokio::ping;
-use tokio::time::error::Elapsed;
 use tokio::time::timeout;
 
-use crate::duration::TimeoutDuration;
+use crate::clap_support::TimeoutDuration;
 use crate::output_flavor::OutputFlavor;
 
-mod duration;
+mod clap_support;
 mod output_flavor;
 
 /// Options of the command line utility.
@@ -53,7 +48,7 @@ async fn main() {
         *options.timeout,
         ping(options.hostname.as_str(), options.port),
     )
-        .await
+    .await
     {
         Ok(Ok(response)) => options.flavor.handle_response(response),
         Ok(Err(error)) => options.flavor.handle_error(error),

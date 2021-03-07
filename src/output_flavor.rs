@@ -26,19 +26,19 @@ pub enum OutputFlavor {
 }
 
 impl OutputFlavor {
-    pub fn handle_response(&self, response: Response) {
+    pub fn handle_response(&self, _response: Response) {
         match self {
             Self::StatusCode => exit(0),
         }
     }
 
-    pub fn handle_error(&self, response: Error) {
+    pub fn handle_error(&self, _response: Error) {
         match self {
             Self::StatusCode => exit(1),
         }
     }
 
-    pub fn handle_timeout(&self, response: Elapsed) {
+    pub fn handle_timeout(&self, _response: Elapsed) {
         match self {
             Self::StatusCode => exit(1),
         }
