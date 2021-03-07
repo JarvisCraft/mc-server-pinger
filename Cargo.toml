@@ -1,0 +1,14 @@
+[package]
+name = "mc-server-pinger"
+version = "0.1.0"
+authors = ["Petr Portnov <me@progrm-jarvis.ru>"]
+edition = "2018"
+# Basic properties
+description = "Command line utility for pinging Minecraft servers via Server List Ping protocol"
+license = "Apache-2.0"
+repository = "https://github.com/JarvisCraft/mc-server-pinger"
+# crates.io search metadata
+keywords = ["minecraft", "ping"]
+categories = ["command-line-utilities", "network-programming"]
+
+[dependencies]
