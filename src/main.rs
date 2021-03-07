@@ -12,19 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::process::exit;
-use std::str::FromStr;
-
 use clap::Clap;
 use craftping::tokio::ping;
-use craftping::{Error, Response};
-use tokio::time::error::Elapsed;
 use tokio::time::timeout;
 
-use crate::duration::TimeoutDuration;
+use crate::clap_support::TimeoutDuration;
 use crate::output_flavor::OutputFlavor;
 
-mod duration;
+mod clap_support;
 mod output_flavor;
 
 /// Options of the command line utility.
