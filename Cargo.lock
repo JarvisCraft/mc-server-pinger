@@ -153,6 +153,7 @@ dependencies = [
  "clap",
  "craftping",
  "peg",
+ "tokio",
 ]
 
 [[package]]
@@ -369,6 +370,18 @@ dependencies = [
  "memchr",
  "mio",
  "pin-project-lite",
+ "tokio-macros",
+]
+
+[[package]]
+name = "tokio-macros"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "caf7b11a536f46a809a8a9f0bb4237020f70ecbf115b842360afb127ea2fda57"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
