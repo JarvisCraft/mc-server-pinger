@@ -12,5 +12,5 @@ keywords = ["minecraft", "ping"]
 categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
-clap = "2.33.3"
+clap = "3.0.0-beta.2"
 craftping = "0.2.1"
