@@ -32,6 +32,4 @@ jobs:
       - uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: >
-            --all-features --all-targets
-            -- -W clippy::all -W clippy::pedantic -W clippy::restriction -W clippy::nursery -D warnings
+          args: --all-features
