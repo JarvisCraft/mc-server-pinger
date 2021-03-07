@@ -13,3 +13,4 @@ categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
 clap = "2.33.3"
+craftping = "0.2.1"
