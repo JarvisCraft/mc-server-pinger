@@ -71,13 +71,13 @@ jobs:
           args: --release --target ${{ matrix.target }}
 
       - name: Move binary
-        run: mv target/${{ matrix.target }}/release/${{ matrix.binary-name }} ${{ matrix.artifact_name }}
+        run: mv target/${{ matrix.target }}/release/${{ matrix.binary-name }} ${{ matrix.artifact-name }}
 
       - name: Strip binary
         run: strip ${{ matrix.binary-name }}
 
       - name: Generate checksum
-        run: shasum -a 256 ${{ matrix.binary-name }} > ${{ matrix.artifact_name }}.sha256
+        run: shasum -a 256 ${{ matrix.binary-name }} > ${{ matrix.artifact-name }}.sha256
 
       - name: Upload release binary
         uses: svenstaro/upload-release-action@v2
