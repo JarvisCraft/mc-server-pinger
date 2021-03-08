@@ -74,10 +74,10 @@ jobs:
         run: mv target/${{ matrix.target }}/release/${{ matrix.binary-name }} ${{ matrix.artifact-name }}
 
       - name: Strip binary
-        run: strip ${{ matrix.binary-name }}
+        run: strip ${{ matrix.artifact-name }}
 
       - name: Generate checksum
-        run: shasum -a 256 ${{ matrix.binary-name }} > ${{ matrix.artifact-name }}.sha256
+        run: shasum -a 256 ${{ matrix.artifact-name }} > ${{ matrix.artifact-name }}.sha256
 
       - name: Upload release binary
         uses: svenstaro/upload-release-action@v2
