@@ -74,7 +74,7 @@ jobs:
         run: mv target/${{ matrix.target }}/release/${{ matrix.binary-name }} ${{ matrix.artifact_name }}
 
       - name: Strip binary
-        run: strip ${{ binary-name }}
+        run: strip ${{ matrix.binary-name }}
 
       - name: Generate checksum
         run: shasum -a 256 ${{ matrix.binary-name }} > ${{ matrix.artifact_name }}.sha256
