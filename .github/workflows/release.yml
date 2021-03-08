@@ -11,33 +11,33 @@ jobs:
       matrix:
         target:
           # Linux
-          # - aarch64-unknown-linux-gnu
-          # - i686-unknown-linux-gnu
+          - aarch64-unknown-linux-gnu
+          - i686-unknown-linux-gnu
           - x86_64-unknown-linux-gnu
           # Windows
-          # - i686-pc-windows-msvc
+          - i686-pc-windows-msvc
           - x86_64-pc-windows-msvc
           # MacOS
           - x86_64-apple-darwin
         include:
           # Linux
-          # - target: aarch64-unknown-linux-gnu
-          #   os: ubuntu-latest
-          #   binary-name: mc-server-pinger
-          #   artifact-name: mc-server-pinger-linux-aarch64
-          # - target: i686-unknown-linux-gnu
-          #   os: ubuntu-latest
-          #   binary-name: mc-server-pinger
-          #   artifact-name: mc-server-pinger-linux-i686
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            binary-name: mc-server-pinger
+            artifact-name: mc-server-pinger-linux-aarch64
+          - target: i686-unknown-linux-gnu
+            os: ubuntu-latest
+            binary-name: mc-server-pinger
+            artifact-name: mc-server-pinger-linux-i686
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
             binary-name: mc-server-pinger
             artifact-name: mc-server-pinger-linux-x86_64
           # Windows
-          # - target: i686-pc-windows-msvc
-          #   os: windows-latest
-          #   binary-name: mc-server-pinger.exe
-          #   artifact-name: mc-server-pinger-windows-i686.exe
+          - target: i686-pc-windows-msvc
+            os: windows-latest
+            binary-name: mc-server-pinger.exe
+            artifact-name: mc-server-pinger-windows-i686.exe
           - target: x86_64-pc-windows-msvc
             os: windows-latest
             binary-name: mc-server-pinger.exe
