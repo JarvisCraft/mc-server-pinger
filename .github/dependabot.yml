@@ -10,7 +10,7 @@ updates:
     labels: [ dependencies, automatic ]
     schedule:
       interval: daily
-      time: 10:00
+      time: "10:00"
       timezone: Europe/Moscow
   - package-ecosystem: github-actions
     directory: /
@@ -20,5 +20,5 @@ updates:
     labels: [ dependencies, automatic ]
     schedule:
       interval: daily
-      time: 10:00
+      time: "10:00"
       timezone: Europe/Moscow
