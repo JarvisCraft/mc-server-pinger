@@ -67,7 +67,6 @@ peg::parser! {
 }
 
 impl FromStr for TimeoutDuration {
-    //type Err = peg::error::ParseError<<str as peg::Parse>::PositionRepr>;
     type Err = String;
 
     fn from_str(raw: &str) -> Result<Self, Self::Err> {
