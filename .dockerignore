@@ -1,0 +1,16 @@
+# Docker files themselves
+.dockerignore
+Dockerfile
+# Build artifacts
+target/
+# Git related files
+.git/
+.gitignore
+# GitHub related files
+.github/
+.mergify.yml
+# Unrelated text files
+README.md
+LICENSE
+# Common IDE files
+.idea/

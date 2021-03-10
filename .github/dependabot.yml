@@ -12,6 +12,16 @@ updates:
       interval: daily
       time: "10:00"
       timezone: Europe/Moscow
+  - package-ecosystem: docker
+    directory: /
+    target-branch: development
+    open-pull-requests-limit: 10
+    reviewers: [ JarvisCraft ]
+    labels: [ dependencies, automatic ]
+    schedule:
+      interval: daily
+      time: "10:00"
+      timezone: Europe/Moscow
   - package-ecosystem: github-actions
     directory: /
     target-branch: development
