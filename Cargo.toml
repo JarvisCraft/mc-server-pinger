@@ -1,6 +1,6 @@
 [package]
 name = "mc-server-pinger"
-version = "0.1.0-alpha.3"
+version = "0.1.0-alpha.4"
 authors = ["Petr Portnov <me@progrm-jarvis.ru>"]
 edition = "2018"
 # Basic properties
