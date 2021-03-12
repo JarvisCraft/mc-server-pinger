@@ -16,3 +16,13 @@ craftping = { version = "0.2.1", features = ["async-tokio"] }
 tokio = { version = "1.3.0", features = ["rt", "time", "macros"] }
 clap = "3.0.0-beta.2"
 peg = "0.6.3"
+
+[profile.release]
+# This allows a better optimized binary at cost of more complicated compilation
+# which is fine and worth it
+lto = true
+# This minimizes build parallelization bu allows better optimizations
+codegen-units = 1
+# This is a single-purpose binary which has no space for panic
+# thus even if it (somehow) makes it way to production is not as critical
+panic = "abort"
