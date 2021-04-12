@@ -15,7 +15,7 @@ categories = ["command-line-utilities", "network-programming"]
 craftping = { version = "0.2.1", features = ["async-tokio"] }
 tokio = { version = "1.4.0", features = ["rt", "time", "macros"] }
 clap = "3.0.0-beta.2"
-peg = "0.6.3"
+peg = "0.7.0"
 
 [profile.release]
 # This allows a better optimized binary at cost of more complicated compilation
