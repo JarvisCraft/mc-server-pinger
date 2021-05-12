@@ -90,7 +90,7 @@ jobs:
         run: shasum -a 256 ${{ matrix.artifact-name }} > ${{ matrix.artifact-name }}.sha256
 
       - name: Upload release binary
-        uses: svenstaro/upload-release-action@v2
+        uses: svenstaro/upload-release-action@2.2.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: mc-server-pinger-*
