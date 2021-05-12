@@ -24,7 +24,7 @@ jobs:
           toolchain: stable
           components: rustfmt, clippy
 
-      - uses: actions-rs/cargo@v1
+      - uses: actions-rs/cargo@v1.0.3
         with:
           command: fmt
           args: -- --check
