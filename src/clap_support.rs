@@ -20,11 +20,15 @@ use std::{fmt::Debug, str::FromStr, time::Duration};
 #[derive(Eq, PartialEq, Debug)]
 pub struct TimeoutDuration(Duration);
 
-///Units in which the duration can be measured. These correspond to [`Duration`]'s `from_` methods.
+/// Units in which the duration can be measured. These correspond to [`Duration`]'s `from_` methods.
 enum DurationUnits {
+    /// Nanoseconds
     Nanos,
+    /// Microseconds
     Micros,
+    /// Milliseconds
     Millis,
+    /// Seconds
     Seconds,
 }
 
