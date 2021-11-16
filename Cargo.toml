@@ -1,6 +1,6 @@
 [package]
 name = "mc-server-pinger"
-version = "0.1.0-alpha.4"
+version = "0.1.0-alpha.5"
 authors = ["Petr Portnov <me@progrm-jarvis.ru>"]
 edition = "2018"
 # Basic properties
@@ -12,10 +12,10 @@ keywords = ["minecraft", "ping"]
 categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
-craftping = { version = "0.2.1", features = ["async-tokio"] }
-tokio = { version = "1.3.0", features = ["rt", "time", "macros"] }
-clap = "3.0.0-beta.2"
-peg = "0.6.3"
+craftping = { version = "0.3.0", features = ["async-tokio"] }
+tokio = { version = "1.13.1", features = ["rt", "net", "time", "macros"] }
+clap = "3.0.0-beta.5"
+peg = "0.7.0"
 
 [profile.release]
 # This allows a better optimized binary at cost of more complicated compilation

@@ -14,21 +14,22 @@
 
 //! Type wrappers enabling [`clap`] support.
 
-use std::fmt::Debug;
-use std::ops::Deref;
-use std::str::FromStr;
-use std::time::Duration;
+use std::{fmt::Debug, str::FromStr, time::Duration};
 
 /// Wrapper around [`Duration`] which supports [parsing](std::str::FromStr).
 #[derive(Eq, PartialEq, Debug)]
 pub struct TimeoutDuration(Duration);
 
-///Units in which the duration can be measured. These correspond to [`Duration`]'s `from_` methods.
+/// Units in which the duration can be measured. These correspond to [`Duration`]'s `from_` methods.
 enum DurationUnits {
-    NANOS,
-    MICROS,
-    MILLIS,
-    SECONDS,
+    /// Nanoseconds
+    Nanos,
+    /// Microseconds
+    Micros,
+    /// Milliseconds
+    Millis,
+    /// Seconds
+    Seconds,
 }
 
 impl DurationUnits {
@@ -38,10 +39,10 @@ impl DurationUnits {
     /// * `value` - amount of this unit in the created duration
     fn to_duration(&self, value: u64) -> Duration {
         match self {
-            Self::NANOS => Duration::from_nanos(value),
-            Self::MICROS => Duration::from_micros(value),
-            Self::MILLIS => Duration::from_millis(value),
-            Self::SECONDS => Duration::from_secs(value),
+            Self::Nanos => Duration::from_nanos(value),
+            Self::Micros => Duration::from_micros(value),
+            Self::Millis => Duration::from_millis(value),
+            Self::Seconds => Duration::from_secs(value),
         }
     }
 }
@@ -57,8 +58,8 @@ peg::parser! {
         } / expected!("duration's value is too big")
 
         rule units() -> DurationUnits = quiet! {
-            "ns" { DurationUnits::NANOS } / "us" { DurationUnits::MICROS }
-            / "ms" { DurationUnits::MILLIS } / "s" { DurationUnits::SECONDS }
+            "ns" { DurationUnits::Nanos } / "us" { DurationUnits::Micros }
+            / "ms" { DurationUnits::Millis } / "s" { DurationUnits::Seconds }
         } / expected!("duration's units should be one of \"ms\", \"ns\", \"s\", \"us\"")
 
         /// Parses [`Duration`] from the given [`str`].
@@ -76,11 +77,9 @@ impl FromStr for TimeoutDuration {
     }
 }
 
-impl Deref for TimeoutDuration {
-    type Target = Duration;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
+impl From<TimeoutDuration> for Duration {
+    fn from(duration: TimeoutDuration) -> Self {
+        duration.0
     }
 }
 

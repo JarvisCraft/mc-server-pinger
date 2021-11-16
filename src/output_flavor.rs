@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::process::exit;
-use std::str::FromStr;
+use std::{io::Error as IoError, process::exit, str::FromStr};
 
-use craftping::{Error, Response};
+use craftping::{Error as PingError, Response};
 use tokio::time::error::Elapsed;
 
 /// Flavor of the output.
@@ -32,7 +31,13 @@ impl OutputFlavor {
         }
     }
 
-    pub fn handle_error(&self, _response: Error) {
+    pub fn handle_io_error(&self, _response: IoError) {
+        match self {
+            Self::StatusCode => exit(1),
+        }
+    }
+
+    pub fn handle_ping_error(&self, _response: PingError) {
         match self {
             Self::StatusCode => exit(1),
         }

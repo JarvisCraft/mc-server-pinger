@@ -9,9 +9,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.6
         with:
           path: |
             ~/.cargo/registry
@@ -19,30 +19,30 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - uses: actions-rs/toolchain@v1
+      - uses: actions-rs/toolchain@v1.0.7
         with:
           toolchain: stable
 
       - name: Prepare Crate
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: package
 
       - name: Login to crates.io
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: login
           args: ${{ secrets.CARGO_TOKEN }}
 
       - name: Publish Crate
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: publish
 
   dockerize:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
 
       - name: Set environment
         run: echo "docker_image_tag=${GITHUB_REF##*/v}" >> $GITHUB_ENV
@@ -78,9 +78,9 @@ jobs:
             artifact-name: mc-server-pinger-darwin-x86_64
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.6
         with:
           path: |
             ~/.cargo/registry
@@ -88,14 +88,14 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - uses: actions-rs/toolchain@v1
+      - uses: actions-rs/toolchain@v1.0.7
         with:
           toolchain: stable
           target: ${{ matrix.target }}
           override: true
 
       - name: Build
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1.0.3
         with:
           command: build
           args: --release --target ${{ matrix.target }}
@@ -110,7 +110,7 @@ jobs:
         run: shasum -a 256 ${{ matrix.artifact-name }} > ${{ matrix.artifact-name }}.sha256
 
       - name: Upload release binary
-        uses: svenstaro/upload-release-action@v2
+        uses: svenstaro/upload-release-action@2.2.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: mc-server-pinger-*
