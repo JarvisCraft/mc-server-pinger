@@ -11,6 +11,9 @@ repository = "https://github.com/JarvisCraft/mc-server-pinger"
 keywords = ["minecraft", "ping"]
 categories = ["command-line-utilities", "network-programming"]
 
+[[bin]]
+name = "mc-server-pinger"
+
 [dependencies]
 craftping = { version = "0.3.0", features = ["async-tokio"] }
 tokio = { version = "1.13.1", features = ["rt", "net", "time", "macros"] }
