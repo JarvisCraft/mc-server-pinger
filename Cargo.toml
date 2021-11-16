@@ -12,8 +12,8 @@ keywords = ["minecraft", "ping"]
 categories = ["command-line-utilities", "network-programming"]
 
 [dependencies]
-craftping = { version = "0.2.1", features = ["async-tokio"] }
-tokio = { version = "1.13.1", features = ["rt", "time", "macros"] }
+craftping = { version = "0.3.0", features = ["async-tokio"] }
+tokio = { version = "1.13.1", features = ["rt", "net", "time", "macros"] }
 clap = "3.0.0-beta.5"
 peg = "0.7.0"
 

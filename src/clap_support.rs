@@ -14,10 +14,7 @@
 
 //! Type wrappers enabling [`clap`] support.
 
-use std::fmt::Debug;
-use std::ops::Deref;
-use std::str::FromStr;
-use std::time::Duration;
+use std::{fmt::Debug, str::FromStr, time::Duration};
 
 /// Wrapper around [`Duration`] which supports [parsing](std::str::FromStr).
 #[derive(Eq, PartialEq, Debug)]
@@ -76,11 +73,9 @@ impl FromStr for TimeoutDuration {
     }
 }
 
-impl Deref for TimeoutDuration {
-    type Target = Duration;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
+impl From<TimeoutDuration> for Duration {
+    fn from(duration: TimeoutDuration) -> Self {
+        duration.0
     }
 }
 

@@ -14,7 +14,8 @@
 
 use clap::Parser;
 use craftping::tokio::ping;
-use tokio::time::timeout;
+use tokio::net::TcpStream;
+use tokio::time::timeout as tokio_timeout;
 
 use crate::clap_support::TimeoutDuration;
 use crate::output_flavor::OutputFlavor;
@@ -43,15 +44,24 @@ struct CommandLineOptions {
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
-    let options: CommandLineOptions = CommandLineOptions::parse();
-    match timeout(
-        *options.timeout,
-        ping(options.hostname.as_str(), options.port),
-    )
-    .await
-    {
-        Ok(Ok(response)) => options.flavor.handle_response(response),
-        Ok(Err(error)) => options.flavor.handle_error(error),
-        Err(timeout) => options.flavor.handle_timeout(timeout),
-    };
+    let CommandLineOptions {
+        hostname,
+        port,
+        timeout,
+        flavor,
+        ..
+    } = CommandLineOptions::parse();
+
+    let hostname = hostname.as_str();
+
+    match TcpStream::connect((hostname, port)).await {
+        Ok(mut stream) => {
+            match tokio_timeout(timeout.into(), ping(&mut stream, hostname, port)).await {
+                Ok(Ok(response)) => flavor.handle_response(response),
+                Ok(Err(error)) => flavor.handle_ping_error(error),
+                Err(timeout) => flavor.handle_timeout(timeout),
+            }
+        }
+        Err(io_error) => flavor.handle_io_error(io_error),
+    }
 }
