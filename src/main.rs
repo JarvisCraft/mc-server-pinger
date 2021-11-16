@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use clap::Clap;
+use clap::Parser;
 use craftping::tokio::ping;
 use tokio::time::timeout;
 
@@ -23,7 +23,7 @@ mod clap_support;
 mod output_flavor;
 
 /// Options of the command line utility.
-#[derive(Clap)]
+#[derive(Parser)]
 struct CommandLineOptions {
     /// Hostname of the server
     hostname: String,
