@@ -17,7 +17,7 @@ name = "mc-server-pinger"
 [dependencies]
 craftping = { version = "0.3.0", features = ["async-tokio"] }
 tokio = { version = "1.15.0", features = ["rt", "net", "time", "macros"] }
-clap = "3.0.0-beta.5"
+clap = "3.0.0-rc.5"
 peg = "0.7.0"
 
 [profile.release]
