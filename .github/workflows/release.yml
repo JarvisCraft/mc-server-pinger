@@ -9,7 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2.1.7
         with:
@@ -42,7 +42,7 @@ jobs:
   dockerize:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       - name: Set environment
         run: echo "docker_image_tag=${GITHUB_REF##*/v}" >> $GITHUB_ENV
@@ -78,7 +78,7 @@ jobs:
             artifact-name: mc-server-pinger-darwin-x86_64
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
 
       - uses: actions/cache@v2.1.7
         with:
