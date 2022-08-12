@@ -1,4 +1,4 @@
-FROM rust:1.62.1 as builder
+FROM rust:1.63.0 as builder
 WORKDIR /usr/src/
 
 # use musl C standard library implementation which allows full static linking
