@@ -18,7 +18,7 @@ name = "mc-server-pinger"
 craftping = { version = "0.3.0", features = ["async-tokio"] }
 tokio = { version = "1.21.1", features = ["rt", "net", "time", "macros"] }
 clap = { version = "3.2.22", features = ["derive", "wrap_help"] }
-peg = "0.8.0"
+peg = "0.8.1"
 
 [profile.release]
 # This allows a better optimized binary at cost of more complicated compilation
