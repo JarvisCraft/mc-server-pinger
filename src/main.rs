@@ -12,13 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use clap::Parser;
-use craftping::tokio::ping;
-use tokio::net::TcpStream;
-use tokio::time::timeout as tokio_timeout;
-
-use crate::clap_support::TimeoutDuration;
-use crate::output_flavor::OutputFlavor;
+use {
+    crate::{clap_support::TimeoutDuration, output_flavor::OutputFlavor},
+    clap::Parser,
+    craftping::tokio::ping,
+    tokio::{net::TcpStream, time::timeout as tokio_timeout},
+};
 
 mod clap_support;
 mod output_flavor;
@@ -49,7 +48,6 @@ async fn main() {
         port,
         timeout,
         flavor,
-        ..
     } = CommandLineOptions::parse();
 
     let hostname = hostname.as_str();
