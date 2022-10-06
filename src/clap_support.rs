@@ -17,7 +17,7 @@
 use std::{fmt::Debug, str::FromStr, time::Duration};
 
 /// Wrapper around [`Duration`] which supports [parsing](std::str::FromStr).
-#[derive(Eq, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct TimeoutDuration(Duration);
 
 /// Units in which the duration can be measured. These correspond to [`Duration`]'s `from_` methods.

@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use std::{io::Error as IoError, process::exit, str::FromStr};
-
-use craftping::{Error as PingError, Response};
-use tokio::time::error::Elapsed;
+use {
+    craftping::{Error as PingError, Response},
+    std::{io::Error as IoError, process::exit, str::FromStr},
+    tokio::time::error::Elapsed,
+};
 
 /// Flavor of the output.
-#[derive(Eq, PartialEq, Debug)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum OutputFlavor {
     /// Terminates with zero code if ping is successful and non-zero code otherwise.
     StatusCode,
