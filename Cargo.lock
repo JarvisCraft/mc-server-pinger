@@ -83,9 +83,9 @@ dependencies = [
 
 [[package]]
 name = "craftping"
-version = "0.3.1"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed66dffd53065c8084f6a5e0e44d22a635611925726083e8c92a1de92cfbde0b"
+checksum = "1241920c06eb77c76e0ab61f493cfcc98ae60016503d8eb5c449fb1187583503"
 dependencies = [
  "base64",
  "serde",
