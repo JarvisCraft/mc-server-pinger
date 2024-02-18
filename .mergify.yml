@@ -1,7 +1,7 @@
 queue_rules:
   - name: dependabot-updates
     conditions:
-      - check-success=test
+      - check-success=lints
       - check-success=check
 
 pull_request_rules:
