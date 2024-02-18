@@ -41,15 +41,21 @@ struct CommandLineOptions {
     flavor: OutputFlavor,
 }
 
+fn main() {
+    let options = CommandLineOptions::parse();
+
+    run(options);
+}
+
 #[tokio::main(flavor = "current_thread")]
-async fn main() {
-    let CommandLineOptions {
+async fn run(
+    CommandLineOptions {
         hostname,
         port,
         timeout,
         flavor,
-    } = CommandLineOptions::parse();
-
+    }: CommandLineOptions,
+) {
     let hostname = hostname.as_str();
 
     match TcpStream::connect((hostname, port)).await {
