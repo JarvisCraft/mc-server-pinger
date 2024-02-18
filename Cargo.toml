@@ -3,6 +3,7 @@ name = "mc-server-pinger"
 version = "0.1.0-alpha.6"
 authors = ["Petr Portnov <me@progrm-jarvis.ru>"]
 edition = "2018"
+rust-version = "1.76.0"
 # Basic properties
 description = "Command line utility for pinging Minecraft servers via Server List Ping protocol"
 license = "Apache-2.0"
@@ -15,17 +16,18 @@ categories = ["command-line-utilities", "network-programming"]
 name = "mc-server-pinger"
 
 [dependencies]
-craftping = { version = "0.4.1", features = ["async-tokio"] }
-tokio = { version = "1.28.2", features = ["rt", "net", "time", "macros"] }
-clap = { version = "4.1.11", features = ["derive"] }
+craftping = { version = "0.4", features = ["async-tokio"] }
+tokio = { version = "1.28", features = ["rt", "net", "time", "macros"] }
+clap = { version = "4.1", features = ["derive"] }
 peg = "0.8.1"
 
 [profile.release]
 # This allows a better optimized binary at cost of more complicated compilation
 # which is fine and worth it
 lto = true
-# This minimizes build parallelization bu allows better optimizations
+# This minimizes build parallelization but allows better optimizations
 codegen-units = 1
 # This is a single-purpose binary which has no space for panic
 # thus even if it (somehow) makes it way to production is not as critical
 panic = "abort"
+strip = true
