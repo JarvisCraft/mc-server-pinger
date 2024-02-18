@@ -9,49 +9,24 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4.1.1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1.8.0
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-      - uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: stable
-
-      - name: Prepare Crate
-        uses: actions-rs/cargo@v1.0.3
-        with:
-          command: package
-
-      - name: Login to crates.io
-        uses: actions-rs/cargo@v1.0.3
-        with:
-          command: login
-          args: ${{ secrets.CARGO_TOKEN }}
-
-      - name: Publish Crate
-        uses: actions-rs/cargo@v1.0.3
-        with:
-          command: publish
+          toolchain: 1.76.0
+      - run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_PUBLISH_TOKEN }}
 
   dockerize:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
+      - uses: actions/checkout@v4.1.1
       - name: Set environment
         run: echo "docker_image_tag=${GITHUB_REF##*/v}" >> $GITHUB_ENV
-
       - uses: docker/login-action@v2.2.0
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-
       - uses: docker/build-push-action@v4.1.1
         with:
           push: true
@@ -78,33 +53,15 @@ jobs:
             artifact-name: mc-server-pinger-darwin-x86_64
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4.1.1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-      - uses: actions-rs/toolchain@v1.0.7
-        with:
-          toolchain: stable
+          toolchain: 1.76.0
           target: ${{ matrix.target }}
-          override: true
-
-      - name: Build
-        uses: actions-rs/cargo@v1.0.3
-        with:
-          command: build
-          args: --release --target ${{ matrix.target }}
+      - run: cargo build --release --target ${{ matrix.target }}
 
       - name: Move binary
         run: mv target/${{ matrix.target }}/release/${{ matrix.binary-name }} ${{ matrix.artifact-name }}
-
-      - name: Strip binary
-        run: strip ${{ matrix.artifact-name }}
 
       - name: Generate checksum
         run: shasum -a 256 ${{ matrix.artifact-name }} > ${{ matrix.artifact-name }}.sha256
@@ -116,4 +73,3 @@ jobs:
           file: mc-server-pinger-*
           file_glob: true
           tag: ${{ github.ref }}
-
