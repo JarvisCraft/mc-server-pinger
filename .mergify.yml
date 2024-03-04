@@ -1,7 +1,7 @@
 queue_rules:
   - name: dependabot-updates
     conditions:
-      - check-success=test
+      - check-success=lints
       - check-success=check
 
 pull_request_rules:
@@ -11,5 +11,5 @@ pull_request_rules:
       - base=development
     actions:
       queue:
-        method: merge
+        method: squash
         name: dependabot-updates
