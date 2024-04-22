@@ -9,7 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.3
       - uses: actions-rust-lang/setup-rust-toolchain@v1.8.0
         with:
           toolchain: 1.76.0
@@ -20,7 +20,7 @@ jobs:
   dockerize:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.3
       - name: Set environment
         run: echo "docker_image_tag=${GITHUB_REF##*/v}" >> $GITHUB_ENV
       - uses: docker/login-action@v2.2.0
@@ -53,7 +53,7 @@ jobs:
             artifact-name: mc-server-pinger-darwin-x86_64
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.3
       - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: 1.76.0
