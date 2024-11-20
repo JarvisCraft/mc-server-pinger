@@ -1,15 +1,15 @@
 queue_rules:
   - name: dependabot-updates
-    conditions:
-      - check-success=lints
-      - check-success=check
-
-pull_request_rules:
-  - name: Automatic merge for Dependabot pull requests
-    conditions:
+    queue_conditions:
       - author=dependabot[bot]
       - base=development
+    merge_conditions:
+      - check-success=lints
+      - check-success=check
+    merge_method: squash
+
+pull_request_rules:
+  - name: refactored queue action rule
+    conditions: []
     actions:
       queue:
-        method: squash
-        name: dependabot-updates
